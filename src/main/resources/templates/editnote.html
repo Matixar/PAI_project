@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:include="layout :: head"> </head>
+<body>
+<div th:include="layout :: navigationPanel" style="padding-top: 50px;"></div>
+<div style="margin: auto; width: 50%;">
+    <h1>Edit note:</h1>
+    <!--/*@thymesVar id="note" type="kot.sylwester.PAI_projekt.entities.Note"*/-->
+    <form th:action="@{/editnote/{id}(id=${note.id})} " class="form-group" method="POST" th:object="${note}">
+        <input type="text" class="form-control" th:field="*{title}" placeholder="Title"/>
+        <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" style="color: red; margin-bottom: 20px;"></span><br>
+        <textarea class="form-control" th:field="*{message}" placeholder=""></textarea>
+        <span th:if="${#fields.hasErrors('message')}" th:errors="*{message}" style="color: red; margin-bottom: 20px;"></span><br>
+        <button class="btn btn-primary btn-block" name="edit" type="submit">Edit</button>
+        <button class="btn btn-danger btn-block" type="submit" name="delete">Delete</button>
+    </form>
+</div>
+</body>
+</html>

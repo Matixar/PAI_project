@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head th:include="layout :: head"> </head>
+<body>
+<div th:include="layout :: navigationPanel" style="padding-top: 50px;"></div>
+<div style="margin: auto; width: 50%;">
+<h1>Edit user data</h1>
+<form th:action="@{/edit}" class="form-group" method="POST" th:object="${user}">
+    <input type="text" th:field="*{name}" class="form-control" placeholder="Name"/>
+    <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red; margin-bottom: 20px;"></span><br>
+    <input type="text" th:field="*{surname}" class="form-control" placeholder="Surname"/>
+    <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color: red; margin-bottom: 20px;"></span><br>
+    <input type="text" th:field="*{login}" class="form-control" placeholder="Login"/>
+    <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}" style="color: red; margin-bottom: 20px;"></span><br>
+    <input type="password" th:field="*{password}" class="form-control" placeholder="Password"/>
+    <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red; margin-bottom: 20px;"></span><br>
+    <button class="btn btn-primary btn-block" type="submit">Edit</button>
+</form>
+</div>
+</body>
+</html>

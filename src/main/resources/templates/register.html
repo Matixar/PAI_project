@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head"> </head>
+<body>
+<div th:include="layout :: navigationPanel" style="padding-top: 50px;"></div>
+<div style="margin: auto; width: 50%;">
+    <h1>Register:</h1>
+    <!--/*@thymesVar id="user" type="kot.sylwester.PAI_projekt.entities.User"*/-->
+    <form th:action="@{/register}" class="form-group" method="POST" th:object="${user}">
+        <input type="text" class="form-control" th:field="*{name}" placeholder="Name"/>
+        <span th:if="${#fields.hasErrors('name')}" th:errors="*{name}" style="color: red; margin-bottom: 20px;"></span><br>
+        <input type="text" class="form-control" th:field="*{surname}" placeholder="Surname"/>
+        <span th:if="${#fields.hasErrors('surname')}" th:errors="*{surname}" style="color: red; margin-bottom: 20px;"></span><br>
+        <input type="text" class="form-control" th:field="*{login}" placeholder="Login"/>
+        <span th:if="${#fields.hasErrors('login')}" th:errors="*{login}" style="color: red; margin-bottom: 20px;"></span><br>
+        <input type="password" class="form-control" th:field="*{password}" placeholder="Password"/>
+        <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color: red; margin-bottom: 20px;"></span><br>
+        <button class="btn btn-primary btn-block" type="submit">Register</button>
+    </form>
+</div>
+</body>
+</html>

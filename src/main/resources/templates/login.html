@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+<body>
+<div th:include="layout :: navigationPanel" class="container" style="padding-top: 50px;"></div>
+<div style="margin: auto; width: 50%;">
+    <h1 class="title">Login to app:</h1>
+    <!--/*@thymesVar id="user" type="kot.sylwester.PAI_projekt.entities.User"*/-->
+    <form th:action="@{/login}" class="form-group" method="POST">
+        <input type="text" class="form-control" name="login" placeholder="Login" style="margin-bottom: 20px;"/>
+        <input type="password" class="form-control" name="passwd" placeholder="Password" style="margin-bottom: 20px;"/>
+        <button class="btn btn-primary btn-block" type="submit">Login</button>
+    </form>
+    <div th:if="${param.error}" class="alert alert-danger"> Invalid username/password</div>
+</div>
+</body>
+</html>

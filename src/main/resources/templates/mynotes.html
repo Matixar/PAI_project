@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:include="layout :: head"></head>
+<body>
+    <div th:include="layout :: navigationPanel" class="container" style="padding-top: 50px;"></div>
+    <div style="margin: auto; width: 95%;">
+        <h1 class="title" style="display: flex; justify-content: center; align-items: center;">My notes:</h1>
+        <h6 th:if="${notes.empty}">No notes added yet.</h6>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 content-card" th:each="note : ${notes}">
+                <div class="card-big-shadow">
+                    <div class="card card-just-text" data-background="color" data-color="purple" data-radius="none">
+                        <div class="content">
+                            <h6 class="category" th:text="${note.user.name} + ' ' + ${note.user.surname}"></h6>
+                            <h6 class="category" th:text="'Created: ' + ${note.creationDate}"></h6>
+                            <h6 class="category" th:if="${note.lastModifiedDate != note.creationDate}" th:text="'Last modified: ' + ${note.lastModifiedDate}"></h6>
+                            <h4 class="title"><a th:text="${note.title}" th:href="@{/editnote/{id}(id=${note.id})}"></a></h4>
+                            <p class="description" th:text="${note.message}"></p>
+                        </div>
+                    </div> <!-- end card -->
+                </div>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>

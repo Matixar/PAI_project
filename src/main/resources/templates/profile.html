@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang= "pl" xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: head">
+</head>
+<body>
+<div th:include="layout :: navigationPanel" style="padding-top: 50px;"></div>
+<!--/*@thymesVar id="user" type="kot.sylwester.PAI_projekt.entities.User"*/-->
+<!--/*@thymesVar id="note" type="kot.sylwester.PAI_projekt.entities.Note"*/-->
+<h1 style="display: flex; justify-content: center; align-items: center;" th:text="'Welcome ' +${user.name} + ' ' + ${user.surname}"></h1>
+<div>
+    <h3 style="display: flex; justify-content: center; align-items: center;">Last added note:</h3><br>
+    <div th:if="${note == null}">
+        <h6 style="display: flex; justify-content: center; align-items: center;">You haven't added any notes.
+            You can do it by clicking on the Add note button at the top of the screen.</h6>
+    </div>
+    <div th:if="${note != null}" class="container bootstrap snippets bootdeys content-card" style="display: flex; justify-content: center; align-items: center;">
+        <div class="card-big-shadow">
+            <div class="card card-just-text" data-background="color" data-color="blue" data-radius="none">
+                <div class="content">
+                    <h6 class="category" th:text="${note.user.name} + ' ' + ${note.user.surname}"></h6>
+                    <h6 class="category" th:text="'Created: ' + ${note.creationDate}"></h6>
+                    <h6 class="category" th:if="${note.lastModifiedDate != note.creationDate}" th:text="'Last modified: ' + ${note.lastModifiedDate}"></h6>
+                    <h4 class="title"><a th:text="${note.title}" th:href="@{/editnote/{id}(id=${note.id})}"></a></h4>
+                    <p class="description" th:text="${note.message}"></p>
+                </div>
+            </div> <!-- end card -->
+        </div>
+    </div>
+</div>
+</body>
+</html>
